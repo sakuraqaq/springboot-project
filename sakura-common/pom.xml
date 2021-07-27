@@ -11,5 +11,23 @@
 
     <artifactId>sakura-common</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.sakura.demo</groupId>
+            <artifactId>sakura-dao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--netty的依赖集合，都整合在一个依赖里面了-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.6.Final</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.10.2</version>
+        </dependency>
+    </dependencies>
 </project>
