@@ -80,6 +80,8 @@ public class User implements Serializable {
     private String password;
 }
 -----------------------------------------------------------------------------------------------------------------------------
+
+
 mapper 接口需要实现 BaseMapper
 package com.sakura.mapper;
 
@@ -92,7 +94,11 @@ import com.sakura.farme.base.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User, Long> {
 }
+
+
 -------------------------------------------------------------------------------------------------------------------------------
+
+
 IdGenerator 是基于雪花算法的id生成器
 /**
  * @author : bi
@@ -113,6 +119,5 @@ public class UserServiceImpl implements UserService {
                 .eq(User::getPhoneNumber, "17610068303"));
     }
 }
----------------------------------------------------------------------------------------------------------------------------------------
 
 
