@@ -100,6 +100,19 @@ public interface UserMapper extends BaseMapper<User, Long> {
 
 
 IdGenerator 是基于雪花算法的id生成器
+
+
+package com.sakura.service;
+
+import com.sakura.entity.User;
+import com.sakura.farme.wapper.QueryWrapper;
+import com.sakura.mapper.UserMapper;
+import com.sakura.oss.OssService;
+import com.sakura.uid.IdGenerator;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 /**
  * @author : bi
  * @since : 2021年06月24日
@@ -119,5 +132,3 @@ public class UserServiceImpl implements UserService {
                 .eq(User::getPhoneNumber, "17610068303"));
     }
 }
-
-
