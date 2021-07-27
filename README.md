@@ -30,10 +30,6 @@ idGenerator:<br>
 在启动类启用 自定义mybaits-plus
 ---------
 
-/**
- * @author : bi
- * @since : 2021年06月24日
- */
 @EnableSakuraMybatis<br>
 @SpringBootApplication<br>
 @ComponentScan({"com.sakura"})<br>
