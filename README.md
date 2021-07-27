@@ -52,12 +52,11 @@ public class SakuraWebApplication {
     }
 }
 --------------------------------------------------------------------------------------------
+
 自动建表功能：
  @Data
 @Table(value = "user", auto = "auto")
 public class User implements Serializable {
-
-
     @Column(columnName = "user_id", isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT,length = 32, comment = "用户id")
     private Long userId;
 
@@ -79,6 +78,7 @@ public class User implements Serializable {
     @Column(columnName = "pass_word", jdbcType = JdbcType.VARCHAR, length = 32, comment = "密码")
     private String password;
 }
+
 -----------------------------------------------------------------------------------------------------------------------------
 
 
