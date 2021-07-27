@@ -7,27 +7,24 @@ springboot 多模块项目的创建模板
 
 yml文件：
 ---------
-server:
-  port: 4396
-
-sakura:
-  datasource:
-    entityPackage: com.sakura.entity
-    name: sakura
-    basePackage: com.sakura.mapper
-    qualifier: sakuraQualifier
-    jdbcInfos:
-      url:
-      username:
-      password:
-      initialSize: 10
-      maxActive: 20
-
-idGenerator:
-  timeBits: 28
-  workerBits: 22
-  seqBits: 13
-  epochStr: 1622875679513
+sakura:<br>
+  datasource:<br>
+    entityPackage: com.sakura.entity<br>
+    name: sakura<br>
+    basePackage: com.sakura.mapper<br>
+    qualifier: sakuraQualifier<br>
+    jdbcInfos:<br>
+      url:<br>
+      username:<br>
+      password:<br>
+      initialSize: 10<br>
+      maxActive: 20<br>
+<br>
+idGenerator:<br>
+  timeBits: 28<br>
+  workerBits: 22<br>
+  seqBits: 13<br>
+  epochStr: 1622875679513<br>
 
   
 启用 自定义mybaits-plus
