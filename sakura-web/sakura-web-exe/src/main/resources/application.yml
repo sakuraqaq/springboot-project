@@ -1,2 +1,21 @@
 server:
   port: 4396
+
+sakura:
+  datasource:
+    entityPackage: com.sakura.entity
+    name: sakura
+    basePackage: com.sakura.mapper
+    qualifier: sakuraQualifier
+    jdbcInfos:
+      url:
+      username:
+      password:
+      initialSize: 10
+      maxActive: 20
+
+idGenerator:
+  timeBits: 28
+  workerBits: 22
+  seqBits: 13
+  epochStr: 1622875679513

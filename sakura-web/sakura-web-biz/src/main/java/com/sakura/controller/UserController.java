@@ -1,5 +1,7 @@
 package com.sakura.controller;
 
+import com.sakura.entity.User;
+import com.sakura.oss.OssService;
 import com.sakura.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,9 @@ public class UserController {
 
     private final UserService userService;
 
+
     @GetMapping("/users")
-    public String getUser() {
+    public User getUser() {
         return userService.getUser();
     }
 }
