@@ -6,7 +6,7 @@ springboot 多模块项目的创建模板
 
 
 yml文件：
---------------------------------------------------------------
+---------
 server:
   port: 4396
 
@@ -28,9 +28,10 @@ idGenerator:
   workerBits: 22
   seqBits: 13
   epochStr: 1622875679513
-  --------------------------------------------------------------
+
   
-启用 自定义mybaits-plus-----------------------------------------
+启用 自定义mybaits-plus
+---------
 package com.sakura.application;
 
 import com.sakura.farme.annotation.EnableSakuraMybatis;
@@ -51,9 +52,11 @@ public class SakuraWebApplication {
         SpringApplication.run(SakuraWebApplication.class, args);
     }
 }
---------------------------------------------------------------------------------------------
 
 自动建表功能：
+--------
+
+
  @Data
 @Table(value = "user", auto = "auto")
 public class User implements Serializable {
@@ -79,9 +82,6 @@ public class User implements Serializable {
     private String password;
 }
 
------------------------------------------------------------------------------------------------------------------------------
-
-
 mapper 接口需要实现 BaseMapper
 package com.sakura.mapper;
 
@@ -95,11 +95,8 @@ import com.sakura.farme.base.BaseMapper;
 public interface UserMapper extends BaseMapper<User, Long> {
 }
 
-
--------------------------------------------------------------------------------------------------------------------------------
-
-
 IdGenerator 是基于雪花算法的id生成器
+-----------
 
 
 package com.sakura.service;
