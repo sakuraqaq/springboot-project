@@ -27,36 +27,25 @@ idGenerator:<br>
   epochStr: 1622875679513<br>
 
   
-启用 自定义mybaits-plus
+在启动类启用 自定义mybaits-plus
 ---------
-package com.sakura.application;
-
-import com.sakura.farme.annotation.EnableSakuraMybatis;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author : bi
  * @since : 2021年06月24日
  */
-@EnableSakuraMybatis
-@SpringBootApplication
-@ComponentScan({"com.sakura"})
-public class SakuraWebApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SakuraWebApplication.class, args);
-    }
-}
+@EnableSakuraMybatis<br>
+@SpringBootApplication<br>
+@ComponentScan({"com.sakura"})<br>
+public class SakuraWebApplication {<br>
+}<br>
 
 自动建表功能：
 --------
 
-
- @Data
-@Table(value = "user", auto = "auto")
-public class User implements Serializable {
+@Data<br>
+@Table(value = "user", auto = "auto")<br>
+public class User implements Serializable {<br>
     @Column(columnName = "user_id", isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT,length = 32, comment = "用户id")
     private Long userId;
 
@@ -77,52 +66,28 @@ public class User implements Serializable {
 
     @Column(columnName = "pass_word", jdbcType = JdbcType.VARCHAR, length = 32, comment = "密码")
     private String password;
-}
+}<br>
 
-mapper 接口需要实现 BaseMapper
-package com.sakura.mapper;
+mapper 接口需要实现 BaseMapper<br>
 
-import com.sakura.entity.User;
-import com.sakura.farme.base.BaseMapper;
-
-/**
- * @author : bi
- * @since : 2021年06月24日
- */
-public interface UserMapper extends BaseMapper<User, Long> {
-}
-
+public interface UserMapper extends BaseMapper<User, Long> {<br>
+}<br>
 IdGenerator 是基于雪花算法的id生成器
 -----------
 
 
-package com.sakura.service;
+@Service<br>
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))<br>
+public class UserServiceImpl implements UserService {<br>
 
-import com.sakura.entity.User;
-import com.sakura.farme.wapper.QueryWrapper;
-import com.sakura.mapper.UserMapper;
-import com.sakura.oss.OssService;
-import com.sakura.uid.IdGenerator;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+    private final IdGenerator idGenerator;<br>
+    private final UserMapper userMapper;<br>
+    private final OssService ossService;<br>
 
-/**
- * @author : bi
- * @since : 2021年06月24日
- */
-@Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserServiceImpl implements UserService {
-
-    private final IdGenerator idGenerator;
-    private final UserMapper userMapper;
-    private final OssService ossService;
-
-    @Override
-    public User getUser() {
-        System.out.println(idGenerator.getUID()+"\r\n"+ossService);
-        return  userMapper.selectOne(new QueryWrapper<User>()
-                .eq(User::getPhoneNumber, "17610068303"));
-    }
-}
+    @Override<br>
+    public User getUser() {<br>
+        System.out.println(idGenerator.getUID()+"\r\n"+ossService);<br>
+        return  userMapper.selectOne(new QueryWrapper<User>()<br>
+                .eq(User::getPhoneNumber, "17610068303"));<br>
+    }<br>
+}<br>
