@@ -1,5 +1,5 @@
 server:
-  port: 4396
+  port: 4399
 
 sakura:
   datasource:
