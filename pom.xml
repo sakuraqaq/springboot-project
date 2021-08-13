@@ -7,71 +7,38 @@
         <module>sakura-common</module>
         <module>sakura-web</module>
         <module>sakura-dao</module>
-        <module>sakura-web</module>
     </modules>
+
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.sakura.frame</groupId>
+        <artifactId>frame</artifactId>
+        <version>1.0.1</version>
     </parent>
+
     <groupId>com.sakura.demo</groupId>
     <artifactId>sakura</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sakura</name>
-    <description>Demo project for Spring Boot</description>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
+
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <groupId>com.sakura.frame</groupId>
+            <artifactId>frame</artifactId>
+            <version>1.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sakura.blog</groupId>
-            <artifactId>myblog</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
     <repositories>
-        <repository>
-            <id>central</id>
-            <name>aliyun maven</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-            <layout>default</layout>
-            <!-- 是否开启发布版构件下载 -->
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <!-- 是否开启快照版构件下载 -->
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
             <repository>
                 <id>sakuraqaq-sakura-mybatis-plus-maven</id>
                 <url>https://raw.githubusercontent.com/sakuraqaq/sakura-mybatis-plus-maven/main/repo</url>
             </repository>
-
     </repositories>
 
 </project>

@@ -17,6 +17,16 @@
             <artifactId>sakura-web-biz</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.sakura.demo</groupId>
+            <artifactId>sakura-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sakura.demo</groupId>
+            <artifactId>sakura-dao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

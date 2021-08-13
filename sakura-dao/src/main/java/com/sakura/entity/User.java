@@ -17,11 +17,11 @@ import java.util.Date;
 public class User implements Serializable {
 
 
-    @Column(columnName = "user_id", isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT,length = 32, comment = "用户id")
+    @Column(columnName = "user_id", isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT, comment = "用户id")
     private Long userId;
 
-    @Column(columnName = "user_name", jdbcType = JdbcType.VARCHAR,length = 32, comment = "用户名")
-    private String userName;
+    @Column(columnName = "username", jdbcType = JdbcType.VARCHAR, length = 32, comment = "用户名")
+    private String username;
 
     @Column(columnName = "age", jdbcType = JdbcType.BIGINT, comment = "年龄")
     private Integer age;
@@ -35,7 +35,7 @@ public class User implements Serializable {
     @Column(columnName = "phone_number", jdbcType = JdbcType.VARCHAR, length = 32, comment = "手机号")
     private String phoneNumber;
 
-    @Column(columnName = "pass_word", jdbcType = JdbcType.VARCHAR, length = 32, comment = "密码")
+    @Column(columnName = "password", jdbcType = JdbcType.VARCHAR, length = 32, comment = "密码")
     private String password;
 }
 

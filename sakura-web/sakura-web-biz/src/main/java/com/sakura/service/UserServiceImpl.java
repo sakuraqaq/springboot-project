@@ -1,9 +1,9 @@
 package com.sakura.service;
 
 import com.sakura.entity.User;
+import com.sakura.farme.redis.RedisCache;
 import com.sakura.farme.wapper.QueryWrapper;
 import com.sakura.mapper.UserMapper;
-import com.sakura.oss.OssService;
 import com.sakura.uid.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,10 @@ public class UserServiceImpl implements UserService {
 
     private final IdGenerator idGenerator;
     private final UserMapper userMapper;
-    private final OssService ossService;
+    private final RedisCache redisCache;
 
     @Override
     public User getUser() {
-        System.out.println(idGenerator.getUID()+"\r\n"+ossService);
         return  userMapper.selectOne(new QueryWrapper<User>()
                 .eq(User::getPhoneNumber, "17610068303"));
     }

@@ -59,7 +59,7 @@ public class MyWebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
         User user = new User();
         user.setUserId(i);
-        user.setUserName(i + "号用户");
+        user.setUsername(i + "号用户");
 
         MyChannelHandlerPool.setChannelParameter(ctx, MyChannelHandlerPool.USER_INFO, user);
 

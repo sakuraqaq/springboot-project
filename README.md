@@ -7,46 +7,46 @@ springboot 多模块项目的创建模板
 
 yml文件：
 ---------
-sakura:<br>
-  datasource:<br>
-    entityPackage: com.sakura.entity<br>
-    name: sakura<br>
-    basePackage: com.sakura.mapper<br>
-    qualifier: sakuraQualifier<br>
-    jdbcInfos:<br>
-      url:<br>
-      username:<br>
-      password:<br>
-      initialSize: 10<br>
-      maxActive: 20<br>
-<br>
-idGenerator:<br>
-  timeBits: 28<br>
-  workerBits: 22<br>
-  seqBits: 13<br>
-  epochStr: 1622875679513<br>
+```
+sakura:
+ datasource:
+  entityPackage: com.sakura.entity
+  name: sakura
+  basePackage: com.sakura.mapper
+  qualifier: sakuraQualifier
+  jdbcInfos:
+    url: jdbc:mysql://rm-bp1jai672vn7r912s1250108m.mysql.rds.aliyuncs.com:3306/sakuratest?allowPublicKeyRetrieval=true
+    username: sakura01
+    password: sakura01
+    initialSize: 10
+    maxActive: 20
+```
+ 
 
-  
 在启动类启用 自定义mybaits-plus
 ---------
-
-@EnableSakuraMybatis<br>
-@SpringBootApplication<br>
-@ComponentScan({"com.sakura"})<br>
-public class SakuraWebApplication {<br>
-}<br>
+```java
+@EnableSakuraMybatis
+@SpringBootApplication
+@ComponentScan({"com.sakura"})
+public class SakuraWebApplication {
+}
+```
 
 自动建表功能：
 --------
 
-@Data<br>
-@Table(value = "user", auto = "auto")<br>
-public class User implements Serializable {<br>
-    @Column(columnName = "user_id", isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT,length = 32, comment = "用户id")
+```java
+@Data
+@Table(value = "user", auto = "auto")
+public class User implements Serializable {
+
+
+    @Column(columnName = "user_id", isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT, comment = "用户id")
     private Long userId;
 
-    @Column(columnName = "user_name", jdbcType = JdbcType.VARCHAR,length = 32, comment = "用户名")
-    private String userName;
+    @Column(columnName = "username", jdbcType = JdbcType.VARCHAR, length = 32, comment = "用户名")
+    private String username;
 
     @Column(columnName = "age", jdbcType = JdbcType.BIGINT, comment = "年龄")
     private Integer age;
@@ -60,30 +60,51 @@ public class User implements Serializable {<br>
     @Column(columnName = "phone_number", jdbcType = JdbcType.VARCHAR, length = 32, comment = "手机号")
     private String phoneNumber;
 
-    @Column(columnName = "pass_word", jdbcType = JdbcType.VARCHAR, length = 32, comment = "密码")
+    @Column(columnName = "password", jdbcType = JdbcType.VARCHAR, length = 32, comment = "密码")
     private String password;
-}<br>
+}
+```
 
-mapper 接口需要实现 BaseMapper<br>
+#mapper 接口需要实现 BaseMapper<br>
 
-public interface UserMapper extends BaseMapper<User, Long> {<br>
-}<br>
-IdGenerator 是基于雪花算法的id生成器
------------
+```java
+public interface UserMapper extends BaseMapper<User, Long> {
+}
+```
 
+#IdGenerator 是基于雪花算法的id生成器
 
-@Service<br>
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))<br>
-public class UserServiceImpl implements UserService {<br>
+```java
+@Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class UserServiceImpl implements UserService {
 
-    private final IdGenerator idGenerator;<br>
-    private final UserMapper userMapper;<br>
-    private final OssService ossService;<br>
+    private final IdGenerator idGenerator;
+    private final UserMapper userMapper;
+    private final OssService ossService;
 
-    @Override<br>
-    public User getUser() {<br>
-        System.out.println(idGenerator.getUID()+"\r\n"+ossService);<br>
-        return  userMapper.selectOne(new QueryWrapper<User>()<br>
-                .eq(User::getPhoneNumber, "17610068303"));<br>
-    }<br>
-}<br>
+    @Override
+    public User getUser() {
+        System.out.println(idGenerator.getUID()+"\r\n"+ossService);
+        return  userMapper.selectOne(new QueryWrapper<User>()
+                .eq(User::getPhoneNumber, "17610068303"));
+    }
+}
+```
+***
+#2021/8/13 新增基于RedisTemplate的Redis
+
+在启动类加上注解 @EnableRedis <br>
+在yml文件中配置：<br>
+
+    redis:
+    host: xxxx
+    port: 6379
+    password: xxxx
+    timeout: 10000
+    jedisConfig:
+      maxActive: 600
+      maxWait: 3000
+      maxIdle: 10
+      minIdle: 4
+
