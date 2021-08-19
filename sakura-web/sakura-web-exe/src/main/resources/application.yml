@@ -8,21 +8,21 @@ sakura:
     basePackage: com.sakura.mapper
     qualifier: sakuraQualifier
     jdbcInfos:
-      url: jdbc:mysql://rm-bp1jai672vn7r912s1250108m.mysql.rds.aliyuncs.com:3306/sakuratest?allowPublicKeyRetrieval=true
-      username: sakura01
-      password: sakura01
-      initialSize: 10
-      maxActive: 20
+      url:
+      username:
+      password:
+      initialSize:
+      maxActive:
   redis:
-    host: r-bp1jkeju27v565c4nwpd.redis.rds.aliyuncs.com
-    port: 6379
-    password: Dnic%123
-    timeout: 10000
+    host:
+    port:
+    password:
+    timeout:
     jedisConfig:
-      maxActive: 600
-      maxWait: 3000
-      maxIdle: 10
-      minIdle: 4
+      maxActive:
+      maxWait:
+      maxIdle:
+      minIdle:
   web:
     sessionCookieName: SakuraSessionDev
     sessionCookieDomain: aichidoubao.com
