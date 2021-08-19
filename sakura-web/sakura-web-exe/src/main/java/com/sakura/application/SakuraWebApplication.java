@@ -2,6 +2,7 @@ package com.sakura.application;
 
 import com.sakura.farme.annotation.EnableRedis;
 import com.sakura.farme.annotation.EnableSakuraMybatis;
+import com.sakura.web.annotation.EnableRedisSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @EnableRedis
 @EnableSakuraMybatis
+@EnableRedisSession
 @SpringBootApplication
 @ComponentScan({"com.sakura"})
 public class SakuraWebApplication {

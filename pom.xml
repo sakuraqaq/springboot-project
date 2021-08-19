@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.sakura.frame</groupId>
         <artifactId>frame</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
 
     <groupId>com.sakura.demo</groupId>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>com.sakura.frame</groupId>
             <artifactId>frame</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
 
     </dependencies>
