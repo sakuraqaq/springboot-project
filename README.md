@@ -96,7 +96,8 @@ public class UserServiceImpl implements UserService {
 
 在启动类加上注解 @EnableRedis <br>
 在yml文件中配置：<br>
-
+````
+sakura
     redis:
     host: xxxx
     port: 6379
@@ -107,4 +108,18 @@ public class UserServiceImpl implements UserService {
       maxWait: 3000
       maxIdle: 10
       minIdle: 4
+````
 
+
+***
+#2021/08/19基于redis的登录认证
+启动类加入注解 @EnableRedisSession
+在配置文件中加入:
+````
+sakura
+  web:
+    sessionCookieName: SakuraSessionDev
+    sessionCookieDomain: aichidoubao.com
+    sessionCacheKeyPre: sakura.session
+    sessionExpireSeconds: 604800
+````
