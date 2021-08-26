@@ -1,5 +1,7 @@
 package com.sakura.service;
 
+import com.sakura.component.SakuraSessionUser;
+import com.sakura.dto.UserDTO;
 import com.sakura.entity.User;
 
 /**
@@ -8,6 +10,8 @@ import com.sakura.entity.User;
  */
 public interface UserService {
 
-    User getUser();
+    User getUser(SakuraSessionUser sessionUser);
+
+    int setUser(UserDTO userDTO);
 
 }

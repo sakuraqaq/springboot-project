@@ -1,5 +1,6 @@
 package com.sakura.controller;
 
+import com.sakura.component.SakuraSessionUser;
 import com.sakura.dto.UserDTO;
 import com.sakura.farme.pojo.Results;
 import com.sakura.service.UserService;
@@ -27,17 +28,20 @@ public class UserController {
     private final UserService userService;
 
 
-    @NoLoginRequired
     @GetMapping("/users/users")
-    public Results<?> setUser(SessionUser sessionUser){
-        sessionUser.setLogin(true);
-        sessionUser.setUserId(userService.getUser().getUserId());
-        return Results.buildSuccess("设置完成", sessionUser);
+    public Results<?> setUser(@Valid UserDTO userDTO, SessionUser sessionUser){
+        return Results.buildSuccess("添加成功", userService.setUser(userDTO));
     }
 
 
+    @NoLoginRequired
     @GetMapping("/users")
-    public Results<?> getUser(@Valid UserDTO userDTO) {
-        return Results.buildSuccess("查询成功", userService.getUser());
+    public Results<?> getUser(@Valid UserDTO userDTO, SakuraSessionUser sessionUser) {
+        return Results.buildSuccess("获取完毕", userService.getUser(sessionUser));
+    }
+
+    @GetMapping("/users/list")
+    public Results<?> userList(){
+        return Results.buildSuccess("获取完毕","1");
     }
 }
