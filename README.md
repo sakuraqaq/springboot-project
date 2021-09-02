@@ -15,9 +15,9 @@ sakura:
   basePackage: com.sakura.mapper
   qualifier: sakuraQualifier
   jdbcInfos:
-    url: jdbc:mysql://rm-bp1jai672vn7r912s1250108m.mysql.rds.aliyuncs.com:3306/sakuratest?allowPublicKeyRetrieval=true
-    username: sakura01
-    password: sakura01
+    url: jdbc:
+    username: 
+    password: 
     initialSize: 10
     maxActive: 20
 ```
