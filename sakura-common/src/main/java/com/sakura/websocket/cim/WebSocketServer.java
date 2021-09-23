@@ -17,10 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebSocketServer {
 
+    private int port;
 
-    public WebSocketServer(int port) {
-            start(port);
-    }
 
     private void start(int port) {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -43,13 +41,14 @@ public class WebSocketServer {
                     });
             ChannelFuture channelFuture = serverBootstrap.bind().sync();
             log.info(WebSocketServer.class + "启动正在监听: " + channelFuture.channel().localAddress());
-            channelFuture.channel().closeFuture().sync();
         } catch (Exception e) {
-//            log.error(e.getMessage());
-        } finally {
+            log.error(e.getMessage());
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }
     }
 
+    public void setPort(int port) {
+        this.port = port;
+    }
 }
