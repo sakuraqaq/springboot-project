@@ -22,7 +22,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-
 public class UserController {
 
     private final UserService userService;
