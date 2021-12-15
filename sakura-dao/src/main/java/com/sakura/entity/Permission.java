@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Table(value = "permission", auto = "add", comment = "权限表")
 public class Permission implements Serializable {
 
-    @Column(columnName = "permission_id", jdbcType = JdbcType.BIGINT, isNull = false, isPrimaryKey = true, comment = "主键id", length = 32)
+    @Column(columnName = "permission_id", jdbcType = JdbcType.BIGINT, isNull = false, isPrimaryKey = true, comment = "主键id")
     private Long permissionId;
 
     @Column(columnName = "url", length = 2048, comment = "链接", jdbcType = JdbcType.VARCHAR)

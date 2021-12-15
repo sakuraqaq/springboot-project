@@ -15,7 +15,7 @@ import java.util.Date;
 @Table(value = "blog", auto = "add", comment = "博客表")
 public class Blog {
 
-    @Column(columnName = "blog_id", jdbcType = JdbcType.BIGINT, isNull = false, isPrimaryKey = true, comment = "主键id", length = 16, auto = true)
+    @Column(columnName = "blog_id", jdbcType = JdbcType.BIGINT, isNull = false, isPrimaryKey = true, comment = "主键id", auto = true)
     private Long blogId;
 
     @Column(columnName = "content", jdbcType = JdbcType.VARCHAR, length = 128, comment = "评论内容")

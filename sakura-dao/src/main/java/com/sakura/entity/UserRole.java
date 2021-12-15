@@ -11,13 +11,13 @@ import java.io.Serializable;
 @Table(auto = "add", value = "user_role")
 public class UserRole implements Serializable {
 
-    @Column(isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT, columnName = "user_role_id", comment = "主键id", length = 32)
+    @Column(isPrimaryKey = true, isNull = false, jdbcType = JdbcType.BIGINT, columnName = "user_role_id", comment = "主键id")
     private Long userRoleId;
 
-    @Column(columnName = "role_id", jdbcType = JdbcType.BIGINT, comment = "角色Id", length = 32)
+    @Column(columnName = "role_id", jdbcType = JdbcType.BIGINT, comment = "角色Id")
     private Long roleId;
 
-    @Column(columnName = "user_id", jdbcType = JdbcType.BIGINT, comment = "权限id", length = 32)
+    @Column(columnName = "user_id", jdbcType = JdbcType.BIGINT, comment = "权限id")
     private Long userId;
 
 }
