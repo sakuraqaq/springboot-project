@@ -33,6 +33,9 @@ public class WrokFlowServiceImpl implements WorkFlowService {
         workFlowDefine.setWorkFlowDefineId(idGenerator.getUID());
         workFlowDefine.setDefineName("oneWorkFlowDefine");
         workFlowDefine.setVersion(1);
+        workFlowDefineMapper.insert(workFlowDefine);
+
+
 
         long workId = idGenerator.getUID();
         WorkFlowTask workFlowTask = new WorkFlowTask();
