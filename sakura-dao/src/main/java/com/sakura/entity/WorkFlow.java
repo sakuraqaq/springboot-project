@@ -18,7 +18,7 @@ public class WorkFlow {
     @Column(columnName = "work_flow_id", jdbcType = JdbcType.BIGINT, isNull = false, isPrimaryKey = true, comment = "主键Id")
     private Long workFlowId;
 
-    @Column(columnName = "node_id", jdbcType = JdbcType.BIGINT, isNull = false, comment = "当前节点ID")
+    @Column(columnName = "node_id", jdbcType = JdbcType.BIGINT, isNull = false, comment = "正在执行的当前节点ID")
     private Long nodeId;
 
     @Column(columnName = "next_node_id", jdbcType = JdbcType.BIGINT, isNull = false, comment = "下一个节点Id")

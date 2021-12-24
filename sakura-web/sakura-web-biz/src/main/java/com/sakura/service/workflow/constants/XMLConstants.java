@@ -4,7 +4,7 @@ package com.sakura.service.workflow.constants;
  * @author: bi
  * @date: 2021/12/16 15:43
  */
-public interface BpmnXMLConstants {
+public interface XMLConstants {
 
     String ATTRIBUTE_ID = "id";
     String ATTRIBUTE_NAME = "name";

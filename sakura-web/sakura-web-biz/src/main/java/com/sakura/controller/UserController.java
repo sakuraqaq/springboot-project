@@ -39,6 +39,12 @@ public class UserController {
         return Results.buildSuccess("获取完毕", userService.getUser(sessionUser));
     }
 
+    @NoLoginRequired
+    @GetMapping("/approve")
+    public Results<?> approve(Long workFlowId){
+        return Results.buildSuccess("点击审批", userService.approve(workFlowId));
+    }
+
     @GetMapping("/users/list")
     public Results<?> userList(){
         return Results.buildSuccess("获取完毕","1");

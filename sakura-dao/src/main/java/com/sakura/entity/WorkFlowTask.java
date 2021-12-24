@@ -24,11 +24,8 @@ public class WorkFlowTask {
     @Column(columnName = "work_flow_task_name", jdbcType = JdbcType.VARCHAR, isNull = false, length = 16, comment = "工作流名称")
     private String workFlowTaskName;
 
-    @Column(columnName = "service_id", jdbcType = JdbcType.BIGINT, comment = "工作流服务Id")
-    private Long serviceId;
-
-    @Column(columnName = "service_type", jdbcType = JdbcType.BIGINT, comment = "服务类型")
-    private Integer serviceType;
+    @Column(columnName = "work_flow_key", jdbcType = JdbcType.VARCHAR, length = 16, comment = "操作类的key")
+    private String workFlowKey;
 
     @Column(columnName = "work_flow_node_id", jdbcType = JdbcType.BIGINT, comment = "工作流任务节点Id")
     private Long workFlowNodeId;
@@ -39,7 +36,10 @@ public class WorkFlowTask {
     @Column(columnName = "status", jdbcType = JdbcType.BIGINT, isNull = false, columnDefault = "0", comment = "流程状态")
     private Integer status;
 
-    @Column(columnName = "creator", jdbcType = JdbcType.BIGINT, comment = "创建者",isNull = false)
+    @Column(columnName = "user_id", jdbcType = JdbcType.BIGINT, comment = "执行人", isNull = false)
+    private Long userId;
+
+    @Column(columnName = "creator", jdbcType = JdbcType.BIGINT, comment = "创建者")
     private Long creator;
 
     @Column(columnName = "create_date", jdbcType = JdbcType.DATE, comment = "创建时间")

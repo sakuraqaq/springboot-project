@@ -4,8 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.sakura.component.SakuraSessionUser;
 import com.sakura.dto.UserDTO;
 import com.sakura.entity.*;
+import com.sakura.farme.pojo.Results;
 import com.sakura.farme.wapper.QueryWrapper;
 import com.sakura.mapper.*;
+import com.sakura.service.workflow.IOperator;
+import com.sakura.service.workflow.ProcessEngine;
 import com.sakura.uid.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : bi
@@ -27,8 +31,10 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final RoleMapper roleMapper;
     private final RolePermissionMapper rolePermissionMapper;
-    private final PermissionMapper  permissionMapper;
+    private final PermissionMapper permissionMapper;
     private final UserRoleMapper userRoleMapper;
+    private final WorkFlowTaskMapper workFlowTaskMapper;
+    private final Map<String, IOperator> iOperator;
 
     @Override
     public User getUser(SakuraSessionUser sessionUser) {
@@ -44,7 +50,7 @@ public class UserServiceImpl implements UserService {
         RolePermission rolePermission = rolePermissionMapper.selectOne(new QueryWrapper<RolePermission>().eq(RolePermission::getRoleId, role.getRoleId()));
         List<Permission> permissions = permissionMapper.selectList(new QueryWrapper<Permission>().eq(Permission::getPermissionId, rolePermission.getPermissionId()));
         List<String> pers = new ArrayList<>();
-        permissions.forEach(p->{
+        permissions.forEach(p -> {
             pers.add(p.getPermission());
         });
         sessionUser.setPermission(user.getUserId(), JSONObject.toJSONString(pers));
@@ -84,5 +90,13 @@ public class UserServiceImpl implements UserService {
         rolePermissionMapper.insert(rolePermission);
 
         return 0;
+    }
+
+    @Override
+    public Results<?> approve(Long workFlowId) {
+        Object[] objects = new Object[1];
+        ProcessEngine processEngine = new ProcessEngine(workFlowTaskMapper, workFlowId, iOperator);
+        processEngine.start(objects);
+        return Results.buildSuccess("执行工作流", 0);
     }
 }
