@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 /**
  * @author: bi
  * @date: 2021/12/23 16:48
@@ -23,18 +25,25 @@ public class UserTaskBranchIOperator implements IOperator {
 
     @Override
     public String getKey() {
-        return "branchTask";
+        return "branchTask1";
     }
 
     @Override
-    public ProcessNode doTask(Object[] objects) {
+    public ProcessNode doTask(Map<String, Object> param) {
+        System.out.println("分支1");
+        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>()
+                .eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
+                .eq(WorkFlowTask::getWorkFlowKey, getKey()));
+        //查询下一个节点信息
+        WorkFlowTask node = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>()
+                .eq(WorkFlowTask::getWorkFlowId, workFlowTask.getWorkFlowId())
+                .eq(WorkFlowTask::getId, workFlowTask.getTargetId()));
+
         ProcessNode processNode = new ProcessNode();
-        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowTaskId, objects[0]));
-        log.info("分支任务");
-        if (workFlowTask == null)
-            processNode.setNodeKey("branchTask2");
-        else
-            processNode.setNodeKey(ELEMENT_EVENT_END);
+        processNode.setWorkFlowTaskId(node.getWorkFlowTaskId());
+        processNode.setWorkFlowKey(node.getWorkFlowKey());
+        processNode.setTargetId(node.getTargetId());
+        processNode.setSourceId(node.getSourceId());
         return processNode;
     }
 }

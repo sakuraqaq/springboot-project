@@ -2,6 +2,8 @@ package com.sakura.service.workflow.model;
 
 import lombok.Data;
 
+import java.util.Map;
+
 
 /**
  * @author: bi
@@ -10,14 +12,14 @@ import lombok.Data;
 @Data
 public class ProcessNode {
 
-    private Long nodeId;
-
-    private Long workFlowId;
-
-    private Long nextId;
-
-    private Integer status;
-
-    private String nodeKey;
+    private String sourceId;//节点入口
+    private String targetId;//节点出口
+    private String id;
+    private String condition;//节点条件
+    private String nodeType;
+    private String workFlowKey;
+    private Integer state;
+    private Long workFlowTaskId;
+    private Map<String, Object> param;
 
 }

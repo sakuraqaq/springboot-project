@@ -21,26 +21,29 @@ public class WorkFlowTask {
     @Column(columnName = "work_flow_id", jdbcType = JdbcType.BIGINT, isNull = false, comment = "工作流Id")
     private Long workFlowId;
 
-    @Column(columnName = "work_flow_task_name", jdbcType = JdbcType.VARCHAR, isNull = false, length = 16, comment = "工作流名称")
+    @Column(columnName = "work_flow_task_name", jdbcType = JdbcType.VARCHAR, isNull = false, length = 16, comment = "工作流节点名称")
     private String workFlowTaskName;
+
+    @Column(columnName = "id", jdbcType = JdbcType.VARCHAR, length = 16, comment = "节点Id")
+    private String id;
+
+    @Column(columnName = "source_id", jdbcType = JdbcType.VARCHAR, length = 16, comment = "节点入口")
+    private String sourceId;
+
+    @Column(columnName = "target_id", jdbcType = JdbcType.VARCHAR, length = 16, comment = "节点出口")
+    private String targetId;
+
+    @Column(columnName = "node_condition", jdbcType = JdbcType.VARCHAR, length = 16, comment = "节点条件")
+    private String condition;
+
+    @Column(columnName = "node_type", jdbcType = JdbcType.VARCHAR, length = 16, comment = "任务类别")
+    private String nodeType;
 
     @Column(columnName = "work_flow_key", jdbcType = JdbcType.VARCHAR, length = 16, comment = "操作类的key")
     private String workFlowKey;
 
-    @Column(columnName = "work_flow_node_id", jdbcType = JdbcType.BIGINT, comment = "工作流任务节点Id")
-    private Long workFlowNodeId;
-
-    @Column(columnName = "work_flow_param", jdbcType = JdbcType.VARCHAR, length = 1024, comment = "工作流参数")
-    private String workFlowParam;
-
-    @Column(columnName = "status", jdbcType = JdbcType.BIGINT, isNull = false, columnDefault = "0", comment = "流程状态")
-    private Integer status;
-
-    @Column(columnName = "user_id", jdbcType = JdbcType.BIGINT, comment = "执行人", isNull = false)
-    private Long userId;
-
-    @Column(columnName = "creator", jdbcType = JdbcType.BIGINT, comment = "创建者")
-    private Long creator;
+    @Column(columnName = "state", jdbcType = JdbcType.BIGINT,  columnDefault = "0", comment = "流程状态")
+    private Integer state;
 
     @Column(columnName = "create_date", jdbcType = JdbcType.DATE, comment = "创建时间")
     private Date createDate;

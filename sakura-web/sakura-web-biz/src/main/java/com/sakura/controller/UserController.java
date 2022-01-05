@@ -40,9 +40,15 @@ public class UserController {
     }
 
     @NoLoginRequired
-    @GetMapping("/approve")
+    @GetMapping("/approves")
     public Results<?> approve(Long workFlowId){
         return Results.buildSuccess("点击审批", userService.approve(workFlowId));
+    }
+
+    @NoLoginRequired
+    @GetMapping("/approves/approves")
+    public Results<?> approve1(Long workFlowId){
+        return Results.buildSuccess("点击审批", userService.approve1(workFlowId));
     }
 
     @GetMapping("/users/list")

@@ -1,23 +1,22 @@
 package com.sakura.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONReader;
 import com.sakura.component.SakuraSessionUser;
 import com.sakura.dto.UserDTO;
 import com.sakura.entity.*;
 import com.sakura.farme.pojo.Results;
 import com.sakura.farme.wapper.QueryWrapper;
 import com.sakura.mapper.*;
-import com.sakura.service.workflow.IOperator;
 import com.sakura.service.workflow.ProcessEngine;
 import com.sakura.uid.IdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileReader;
+import java.util.*;
 
 /**
  * @author : bi
@@ -33,8 +32,7 @@ public class UserServiceImpl implements UserService {
     private final RolePermissionMapper rolePermissionMapper;
     private final PermissionMapper permissionMapper;
     private final UserRoleMapper userRoleMapper;
-    private final WorkFlowTaskMapper workFlowTaskMapper;
-    private final Map<String, IOperator> iOperator;
+    private final ProcessEngine processEngine;
 
     @Override
     public User getUser(SakuraSessionUser sessionUser) {
@@ -94,9 +92,61 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Results<?> approve(Long workFlowId) {
-        Object[] objects = new Object[1];
-        ProcessEngine processEngine = new ProcessEngine(workFlowTaskMapper, workFlowId, iOperator);
-        processEngine.start(objects);
+        Map<String, Object> hashMap = new HashMap();
+        hashMap.put("workFlowId", workFlowId);
+        hashMap.put("userId", 123L);
+        hashMap.put("state", 1);
+        processEngine.start(hashMap);
         return Results.buildSuccess("执行工作流", 0);
     }
+
+
+    @Override
+    public Results<?> approve1(Long workFlowId) {
+        //processEngine.init();发起一个工作流
+        Map<String, Object> hashMap = new HashMap();
+        hashMap.put("workFlowId", workFlowId);
+        hashMap.put("userId", 123L);
+        hashMap.put("state", 1);
+        processEngine.start(hashMap);
+        return Results.buildSuccess("执行工作流", 0);
+    }
+
+
+//    JSONReader jsonReader = new JSONReader(new FileReader(path + File.separator + fileInfo.getPath()));
+//            jsonReader.startObject();
+//            while (jsonReader.hasNext()) {
+//        if ("Geomery".equals(jsonReader.readString())) {
+//            jsonReader.startArray();
+//            while (jsonReader.hasNext()){
+//                Geomery geomery = new Geomery();
+//                jsonReader.startObject();
+//                while(jsonReader.hasNext()){
+//                    String key = jsonReader.readString();
+//                    if("material".equals(key)){
+//                        geomery.setMaterial(jsonReader.readInteger());
+//                    }else if("type".equals(key)){
+//                        geomery.setType(jsonReader.readString());
+//                    }else if("uuid".equals(key)){
+//                        geomery.setUuid(jsonReader.readInteger());
+//                    }else if("vertices".equals(key)){
+//                        jsonReader.startArray();
+//                        List<Long> points = new ArrayList<>();
+//                        while(jsonReader.hasNext()){
+//                            points.add(jsonReader.readLong());
+//                        }
+//                        jsonReader.endArray();
+//                        geomery.setVertices(points);
+//                    }else if("visible".equals(key)){
+//                        geomery.setVisible(jsonReader.readObject(Boolean.class));
+//                    }
+//                }
+//                geomeries.add(geomery);
+//                jsonReader.endObject();
+//            }
+//            jsonReader.endArray();
+//        }
+//    }
+//            jsonReader.endObject();
+//            jsonReader.close();
 }

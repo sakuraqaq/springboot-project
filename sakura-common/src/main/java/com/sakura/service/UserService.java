@@ -17,4 +17,5 @@ public interface UserService {
 
     Results<?> approve(Long workFlowId);
 
+    Results<?> approve1(Long workFlowId);
 }

@@ -8,10 +8,15 @@ public interface XMLConstants {
 
     String ATTRIBUTE_ID = "id";
     String ATTRIBUTE_NAME = "name";
-    String ATTRIBUTE_TYPE = "type";
+    String ATTRIBUTE_TYPE = "nodeType";
+    String ATTRIBUTE_KEY = "nodeKey";
+    String ATTRIBUTE_SOURCE = "sourceRef";
+    String ATTRIBUTE_TARGET="targetRef";
+
 
     String ELEMENT_EVENT_START = "startEvent";
     String ELEMENT_EVENT_END = "endEvent";
+    String ELEMENT_CONDITION = "conditionExpression";
 
     String ELEMENT_TASK = "task";
     String ELEMENT_TASK_BUSINESSRULE = "businessRuleTask";
@@ -21,7 +26,11 @@ public interface XMLConstants {
     String ELEMENT_TASK_SEND = "sendTask";
     String ELEMENT_TASK_SERVICE = "serviceTask";
     String ELEMENT_TASK_USER = "userTask";
+    String SEQUENCE_FLOW="sequenceFlow";
     String ELEMENT_CALL_ACTIVITY = "callActivity";
+
+
+    String BRANCH="branch";
 
     /**
      * 指定多实例按照并行或者串行方式进行 true时表示串行
