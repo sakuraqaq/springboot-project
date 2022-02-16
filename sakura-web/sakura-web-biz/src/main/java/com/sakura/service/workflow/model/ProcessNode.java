@@ -18,8 +18,9 @@ public class ProcessNode {
     private String condition;//节点条件
     private String nodeType;
     private String workFlowKey;
-    private Integer state;
+    private Integer state;//0待审核，1审核中，2xx，3审核失败，4审核通过
     private Long workFlowTaskId;
+    private Long nextWorkFlowTaskId;
     private Map<String, Object> param;
 
 }

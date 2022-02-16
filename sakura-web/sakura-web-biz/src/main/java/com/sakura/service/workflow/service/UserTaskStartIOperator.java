@@ -43,10 +43,12 @@ public class UserTaskStartIOperator implements IOperator {
         ProcessNode processNode = new ProcessNode();
         processNode.setWorkFlowTaskId(nextNode.getWorkFlowTaskId());
         processNode.setId(nextNode.getId());
+        processNode.setNodeType(nextNode.getNodeType());
         processNode.setSourceId(nextNode.getSourceId());
         processNode.setTargetId(nextNode.getTargetId());
         processNode.setWorkFlowKey(nextNode.getWorkFlowKey());
         processNode.setParam(param);
+        processNode.setState(2);
         return processNode;
     }
 }

@@ -18,8 +18,11 @@ public class WorkFlowUser {
     @Column(columnName = "work_flow_user_id", jdbcType = JdbcType.BIGINT, isNull = false, isPrimaryKey = true, comment = "主键Id")
     private Long workFlowUserId;
 
-    @Column(columnName = "work_flow_task_id", jdbcType = JdbcType.BIGINT, isNull = false, comment = "工作流Id")
+    @Column(columnName = "work_flow_task_id", jdbcType = JdbcType.BIGINT, isNull = false, comment = "工作流节点Id")
     private Long workFlowTaskId;
+
+    @Column(columnName = "work_flow_id", jdbcType = JdbcType.BIGINT, isNull = false, comment = "工作流Id")
+    private Long workFlowId;
 
     @Column(columnName = "state", jdbcType = JdbcType.BIGINT, isNull = false, columnDefault = "0", comment = "审批状态")
     private Integer state;

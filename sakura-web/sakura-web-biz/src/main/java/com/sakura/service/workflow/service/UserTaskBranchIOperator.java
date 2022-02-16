@@ -30,7 +30,7 @@ public class UserTaskBranchIOperator implements IOperator {
 
     @Override
     public ProcessNode doTask(Map<String, Object> param) {
-        System.out.println("分支1");
+        log.info("分支1");
         WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>()
                 .eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                 .eq(WorkFlowTask::getWorkFlowKey, getKey()));
@@ -40,10 +40,14 @@ public class UserTaskBranchIOperator implements IOperator {
                 .eq(WorkFlowTask::getId, workFlowTask.getTargetId()));
 
         ProcessNode processNode = new ProcessNode();
+        processNode.setId(node.getId());
         processNode.setWorkFlowTaskId(node.getWorkFlowTaskId());
         processNode.setWorkFlowKey(node.getWorkFlowKey());
         processNode.setTargetId(node.getTargetId());
         processNode.setSourceId(node.getSourceId());
+        processNode.setNodeType(node.getNodeType());
+        processNode.setState(node.getState());
+        processNode.setParam(param);
         return processNode;
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <cim-workFlow>
-    <process id="xxxx" name="审批流程" processType="None">
+    <process id="approval" name="xxx审批流程" processType="None">
         <startEvent id="_2" name="开始" sourceRef="none" targetRef="_3" nodeKey="start">
         </startEvent>
         <userTask id="_3" name="多人审批" isSingle="false" sourceRef="_2" targetRef="branch" nodeKey="userTaskO">
@@ -9,7 +9,7 @@
             <sequenceFlow id="_4" name="第一个分支" sourceRef="branch" targetRef="_6" nodeKey="branchTask1">
                 <conditionExpression value="true"/>
             </sequenceFlow>
-            <sequenceFlow id="_5" name="第二个分支" sourceRef="branch" targetRef="_1" nodeKey="branchTask2">
+            <sequenceFlow id="_5" name="第二个分支" sourceRef="branch" targetRef="_2" nodeKey="branchTask2">
                 <conditionExpression value="false"/>
             </sequenceFlow>
         </branch>

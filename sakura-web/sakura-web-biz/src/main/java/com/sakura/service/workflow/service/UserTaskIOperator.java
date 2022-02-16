@@ -1,16 +1,16 @@
 package com.sakura.service.workflow.service;
 
-import com.sakura.entity.WorkFlow;
 import com.sakura.entity.WorkFlowTask;
+import com.sakura.entity.WorkFlowUser;
 import com.sakura.farme.wapper.QueryWrapper;
 import com.sakura.mapper.WorkFlowMapper;
 import com.sakura.mapper.WorkFlowTaskMapper;
+import com.sakura.mapper.WorkFlowUserMapper;
 import com.sakura.service.workflow.IOperator;
 import com.sakura.service.workflow.model.ProcessNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Map;
@@ -25,6 +25,8 @@ public class UserTaskIOperator implements IOperator {
 
     private final WorkFlowTaskMapper workFlowTaskMapper;
     private final WorkFlowMapper workFlowMapper;
+    private final WorkFlowUserMapper workFlowUserMapper;
+
 
     @Override
     public String getKey() {
@@ -41,24 +43,45 @@ public class UserTaskIOperator implements IOperator {
         WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>()
                 .eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                 .eq(WorkFlowTask::getWorkFlowKey, getKey()));
-
-        //查询下一个节点信息 如果是分支任务那么会有很多节点
-        List<WorkFlowTask> nextNode = workFlowTaskMapper.selectList(new QueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
-                .eq(WorkFlowTask::getSourceId, workFlowTask.getTargetId()));
+        List<WorkFlowUser> workFlowUsers = workFlowUserMapper.selectList(new QueryWrapper<WorkFlowUser>().eq(WorkFlowUser::getWorkFlowTaskId, workFlowTask.getWorkFlowTaskId()));
+        if (workFlowUsers != null) {
+            //查询是否所有用户都完成了任务
+            for (WorkFlowUser workFlowUser : workFlowUsers) {
+                if (workFlowUser.getState().equals(3)) { //3表示有人审批不通过
+                    judge = "false";
+                    break;
+                } else if (workFlowUser.getState().equals(0)) { //0表示有人未审批
+                    judge = "wait";
+                    break;
+                }
+            }
+        }
         WorkFlowTask node = null;
-        for (WorkFlowTask flowTask : nextNode) {
-            if (flowTask.getCondition().equals(judge)) {
-                node = flowTask;
-                break;
+        if (!judge.equals("wait")) {
+            //查询下一个节点信息 如果是分支任务那么会有很多节点
+            List<WorkFlowTask> nextNode = workFlowTaskMapper.selectList(new QueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
+                    .eq(WorkFlowTask::getSourceId, workFlowTask.getTargetId()));
+
+            for (WorkFlowTask flowTask : nextNode) {
+                if (flowTask.getCondition().equals(judge)) {
+                    node = flowTask;
+                    break;
+                }
             }
         }
 
         ProcessNode processNode = new ProcessNode();
-        processNode.setWorkFlowKey(node.getWorkFlowKey());
-        processNode.setSourceId(node.getSourceId());
-        processNode.setTargetId(node.getTargetId());
-        processNode.setWorkFlowTaskId(node.getWorkFlowTaskId());
-        processNode.setParam(param);
+        if(node != null){
+            processNode.setWorkFlowKey(node.getWorkFlowKey());
+            processNode.setId(node.getId());
+            processNode.setSourceId(node.getSourceId());
+            processNode.setTargetId(node.getTargetId());
+            processNode.setWorkFlowTaskId(node.getWorkFlowTaskId());
+            processNode.setNextWorkFlowTaskId(node.getWorkFlowTaskId());
+            processNode.setState(node.getState());
+            processNode.setNodeType(node.getNodeType());
+            processNode.setParam(param);
+        }
         return processNode;
 
 

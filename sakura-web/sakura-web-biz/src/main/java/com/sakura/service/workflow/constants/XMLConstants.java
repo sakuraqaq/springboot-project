@@ -60,4 +60,9 @@ public interface XMLConstants {
 
     String ATTRIBUTE_TASK_USER_ASSIGNEE = "assignee";
     String ATTRIBUTE_TASK_USER_OWNER = "owner";
+
+    /**
+     * 流程模板key
+     */
+    String APPROVAL_TEMPLATE = "approval";
 }
