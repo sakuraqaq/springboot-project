@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     private final RolePermissionMapper rolePermissionMapper;
     private final PermissionMapper permissionMapper;
     private final UserRoleMapper userRoleMapper;
-  //  private final ProcessEngine processEngine;
+    private final ProcessEngine processEngine;
 
     @Override
     public User getUser(SakuraSessionUser sessionUser) {

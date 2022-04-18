@@ -1,5 +1,6 @@
 package com.sakura.application;
 
+import com.sakura.application.config.EnableWorkFlow;
 import com.sakura.farme.annotation.EnableCreateTable;
 import com.sakura.farme.annotation.EnableRedis;
 import com.sakura.web.annotation.EnableRedisSession;
@@ -14,9 +15,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableRedis
 @EnableRedisSession
 @EnableCreateTable
-//@EnableWorkFlow(scanBasePackage = "com.sakura.service.workflow.service")
 @MapperScan("com.sakura.mapper")
 @SpringBootApplication(scanBasePackages = {"com.sakura"})
+@EnableWorkFlow(scanBasePackage = "com.sakura.service.workflow.service")
 public class SakuraWebApplication {
 
     public static void main(String[] args) {
