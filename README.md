@@ -30,7 +30,8 @@ spring:
 ---------
 ```java
 @EnableCreateTable
-@SpringBootApplication
+@MapperScan("com.sakura.mapper")
+@SpringBootApplication(scanBasePackages = {"com.sakura"})
 public class SakuraWebApplication {
 }
 ```

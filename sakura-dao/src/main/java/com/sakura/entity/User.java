@@ -37,5 +37,8 @@ public class User implements Serializable {
 
     @Column(columnName = "password", jdbcType = JdbcType.VARCHAR, length = 32, comment = "密码")
     private String password;
+
+    @Column(columnName = "type", jdbcType = JdbcType.BIGINT, comment = "人员类型")
+    private Integer type;
 }
 
