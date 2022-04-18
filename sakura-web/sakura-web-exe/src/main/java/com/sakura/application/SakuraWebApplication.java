@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author : bi
  * @since : 2021年06月24日
  */
-@EnableCreateTable
 @EnableRedis
 @EnableRedisSession
+@EnableCreateTable
 //@EnableWorkFlow(scanBasePackage = "com.sakura.service.workflow.service")
 @SpringBootApplication
 public class SakuraWebApplication {

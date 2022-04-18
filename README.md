@@ -3,19 +3,22 @@
 springboot 多模块项目的创建模板
 
 2021 7/27 新增oss + websocket + 自定义 mybatis-plus
+2022 4/18 自定义mybatis-plus 改为 mybatis-plus 3.5.1官方版本  使用@EnableCreateTable可以自动建表
 
 
 yml文件：
 ---------
 ```
-sakura:
- datasource:
-  entityPackage: com.sakura.entity
-  name: sakura
-  basePackage: com.sakura.mapper
-  qualifier: sakuraQualifier
-  jdbcInfos:
-    url: jdbc:
+server:
+  port: 4398
+
+spring:
+  datasource:
+    entityPackage: com.sakura.entity
+    name: sakura
+    basePackage: com.sakura.mapper
+    qualifier: sakuraQualifier
+    url: 
     username: 
     password: 
     initialSize: 10
@@ -23,12 +26,11 @@ sakura:
 ```
  
 
-在启动类启用 自定义mybaits-plus
+在启动类启用 自动建表工具
 ---------
 ```java
-@EnableSakuraMybatis
+@EnableCreateTable
 @SpringBootApplication
-@ComponentScan({"com.sakura"})
 public class SakuraWebApplication {
 }
 ```
@@ -68,7 +70,7 @@ public class User implements Serializable {
 #mapper 接口需要实现 BaseMapper<br>
 
 ```java
-public interface UserMapper extends BaseMapper<User, Long> {
+public interface UserMapper extends BaseMapper<User> {
 }
 ```
 
