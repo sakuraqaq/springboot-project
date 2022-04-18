@@ -1,7 +1,7 @@
 package com.sakura.service.workflow.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sakura.entity.WorkFlowTask;
-import com.sakura.farme.wapper.QueryWrapper;
 import com.sakura.mapper.WorkFlowTaskMapper;
 import com.sakura.service.workflow.IOperator;
 import com.sakura.service.workflow.model.ProcessNode;
@@ -32,7 +32,7 @@ public class UserTaskEndIOperator implements IOperator {
     @Override
     public ProcessNode doTask(Map<String, Object> param) {
         System.out.println("workFlowId：" + param.get("workFlowId"));
-        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>()
+        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new LambdaQueryWrapper<WorkFlowTask>()
                 .eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                 .eq(WorkFlowTask::getWorkFlowKey, getKey()));
 

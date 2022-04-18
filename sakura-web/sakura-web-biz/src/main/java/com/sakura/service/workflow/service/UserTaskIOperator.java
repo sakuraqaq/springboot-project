@@ -1,8 +1,8 @@
 package com.sakura.service.workflow.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sakura.entity.WorkFlowTask;
 import com.sakura.entity.WorkFlowUser;
-import com.sakura.farme.wapper.QueryWrapper;
 import com.sakura.mapper.WorkFlowMapper;
 import com.sakura.mapper.WorkFlowTaskMapper;
 import com.sakura.mapper.WorkFlowUserMapper;
@@ -40,10 +40,10 @@ public class UserTaskIOperator implements IOperator {
         String judge = "true";
 
         //当前节点任务
-        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>()
+        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new LambdaQueryWrapper<WorkFlowTask>()
                 .eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                 .eq(WorkFlowTask::getWorkFlowKey, getKey()));
-        List<WorkFlowUser> workFlowUsers = workFlowUserMapper.selectList(new QueryWrapper<WorkFlowUser>().eq(WorkFlowUser::getWorkFlowTaskId, workFlowTask.getWorkFlowTaskId()));
+        List<WorkFlowUser> workFlowUsers = workFlowUserMapper.selectList(new LambdaQueryWrapper<WorkFlowUser>().eq(WorkFlowUser::getWorkFlowTaskId, workFlowTask.getWorkFlowTaskId()));
         if (workFlowUsers != null) {
             //查询是否所有用户都完成了任务
             for (WorkFlowUser workFlowUser : workFlowUsers) {
@@ -59,7 +59,7 @@ public class UserTaskIOperator implements IOperator {
         WorkFlowTask node = null;
         if (!judge.equals("wait")) {
             //查询下一个节点信息 如果是分支任务那么会有很多节点
-            List<WorkFlowTask> nextNode = workFlowTaskMapper.selectList(new QueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
+            List<WorkFlowTask> nextNode = workFlowTaskMapper.selectList(new LambdaQueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                     .eq(WorkFlowTask::getSourceId, workFlowTask.getTargetId()));
 
             for (WorkFlowTask flowTask : nextNode) {

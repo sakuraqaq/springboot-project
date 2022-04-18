@@ -1,8 +1,7 @@
 package com.sakura.service.workflow.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sakura.entity.WorkFlowTask;
-import com.sakura.farme.wapper.QueryWrapper;
-import com.sakura.mapper.WorkFlowMapper;
 import com.sakura.mapper.WorkFlowTaskMapper;
 import com.sakura.service.workflow.IOperator;
 import com.sakura.service.workflow.model.ProcessNode;
@@ -32,12 +31,12 @@ public class UserTaskStartIOperator implements IOperator {
 
         System.out.println("开始节点");
         //当前节点任务
-        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>()
+        WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new LambdaQueryWrapper<WorkFlowTask>()
                 .eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                 .eq(WorkFlowTask::getWorkFlowKey, getKey()));
 
         //查询下一个节点信息
-        WorkFlowTask nextNode = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
+        WorkFlowTask nextNode = workFlowTaskMapper.selectOne(new LambdaQueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                 .eq(WorkFlowTask::getSourceId, workFlowTask.getId()));
 
         ProcessNode processNode = new ProcessNode();

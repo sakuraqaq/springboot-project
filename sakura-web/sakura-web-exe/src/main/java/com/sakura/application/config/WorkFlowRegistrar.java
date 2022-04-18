@@ -1,6 +1,5 @@
 package com.sakura.application.config;
 
-import com.sakura.farme.annotation.EnableSakuraMybatis;
 import com.sakura.farme.tool.BeanRegistryUtils;
 import com.sakura.farme.tool.ClassUtils;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;

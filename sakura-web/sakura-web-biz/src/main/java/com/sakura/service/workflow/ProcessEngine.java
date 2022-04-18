@@ -1,10 +1,10 @@
 package com.sakura.service.workflow;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.sakura.entity.WorkFlow;
 import com.sakura.entity.WorkFlowTask;
 import com.sakura.entity.WorkFlowUser;
-import com.sakura.farme.wapper.QueryWrapper;
 import com.sakura.mapper.WorkFlowMapper;
 import com.sakura.mapper.WorkFlowTaskMapper;
 import com.sakura.mapper.WorkFlowUserMapper;
@@ -158,9 +158,9 @@ public class ProcessEngine implements XMLConstants {
         //加一个多线程执行当前所有的流程 更具流程状态判断是否需要进行下一步
 
         //查询当前任务执行到的节点
-        WorkFlow workFlow = workFlowMapper.selectOne(new QueryWrapper<WorkFlow>().eq(WorkFlow::getWorkFlowId, param.get("workFlowId")));
+        WorkFlow workFlow = workFlowMapper.selectOne(new LambdaQueryWrapper<WorkFlow>().eq(WorkFlow::getWorkFlowId, param.get("workFlowId")));
         if (workFlow.getStatus() != 4) {
-            WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowTaskId, workFlow.getNodeId()));
+            WorkFlowTask workFlowTask = workFlowTaskMapper.selectOne(new LambdaQueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowTaskId, workFlow.getNodeId()));
             ProcessNode processNode = new ProcessNode();
             processNode.setWorkFlowTaskId(workFlowTask.getWorkFlowTaskId());
             processNode.setWorkFlowKey(workFlowTask.getWorkFlowKey());
@@ -205,10 +205,10 @@ public class ProcessEngine implements XMLConstants {
         }
 
         //保存当前节点id
-        WorkFlow workFlowId = workFlowMapper.selectOne(new QueryWrapper<WorkFlow>().eq(WorkFlow::getWorkFlowId, param.get("workFlowId")));
+        WorkFlow workFlowId = workFlowMapper.selectOne(new LambdaQueryWrapper<WorkFlow>().eq(WorkFlow::getWorkFlowId, param.get("workFlowId")));
         workFlowId.setNodeId(processNode.getWorkFlowTaskId());
         //更新工作流下一个执行的节点
-        WorkFlowTask nextNode = workFlowTaskMapper.selectOne(new QueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
+        WorkFlowTask nextNode = workFlowTaskMapper.selectOne(new LambdaQueryWrapper<WorkFlowTask>().eq(WorkFlowTask::getWorkFlowId, param.get("workFlowId"))
                 .eq(WorkFlowTask::getId, processNode.getId()));
         //查询下一个节点任务
         if (processNode.getNodeType().equals(ELEMENT_EVENT_END)) {

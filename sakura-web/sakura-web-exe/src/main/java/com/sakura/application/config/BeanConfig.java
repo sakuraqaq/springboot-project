@@ -20,8 +20,8 @@ public class BeanConfig {
         return (request, isLogin) -> true;
     }
 
-    @Bean
-    public ProcessEngine processEngine(Map<String, IOperator> iOperatorMap, WorkFlowTaskMapper workFlowTaskMapper, WorkFlowMapper workFlowMapper, WorkFlowUserMapper workFlowUserMapper, IdGenerator idGenerator) {
-        return new ProcessEngine(iOperatorMap, workFlowTaskMapper, workFlowMapper, workFlowUserMapper, idGenerator);
-    }
+//    @Bean
+//    public ProcessEngine processEngine(Map<String, IOperator> iOperatorMap, WorkFlowTaskMapper workFlowTaskMapper, WorkFlowMapper workFlowMapper, WorkFlowUserMapper workFlowUserMapper, IdGenerator idGenerator) {
+//        return new ProcessEngine(iOperatorMap, workFlowTaskMapper, workFlowMapper, workFlowUserMapper, idGenerator);
+//    }
 }

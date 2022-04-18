@@ -1,7 +1,7 @@
 package com.sakura.mapper;
 
-import com.sakura.entity.Role;
-import com.sakura.farme.base.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sakura.entity.Role;;
 
-public interface RoleMapper extends BaseMapper<Role, Long> {
+public interface RoleMapper extends BaseMapper<Role> {
 }
