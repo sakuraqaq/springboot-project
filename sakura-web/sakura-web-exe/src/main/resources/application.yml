@@ -7,15 +7,11 @@ sakura:
     name: sakura
     basePackage: com.sakura.mapper
     qualifier: sakuraQualifier
-    jdbcInfos:
 
-      initialSize: 10
-      maxActive: 20
+    initialSize: 10
+    maxActive: 20
   redis:
-    host: r-bp1jkeju27v565c4nwpd.redis.rds.aliyuncs.com
-    port: 6379
-    password: Dnic%123
-    timeout: 10000
+
     jedisConfig:
       maxActive: 600
       maxWait: 3000
