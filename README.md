@@ -126,3 +126,53 @@ sakura
     sessionCacheKeyPre: sakura.session
     sessionExpireSeconds: 604800
 ````
+
+***
+#定时任务
+````java
+package com.sakura.Task;
+
+import com.sakura.quartz.ScheduleJob;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author: bi
+ * @date: 2022/4/21 14:57
+ */
+@Component
+public class TestTask implements ScheduleJob {
+    @Override
+    public void execute() {
+        System.out.println("TestTask运行中");
+    }
+
+    //任务name和group 用于区分多个定时任务
+    @Override
+    public String getJobName() {
+        return "testTask";
+    }
+
+    @Override
+    public String getJobGroup() {
+        return "testTask";
+    }
+
+    //是否让任务同步执行or异步执行
+    @Override
+    public boolean isSync() {
+        return false;
+    }
+
+    //这里写cron表达式
+    @Override
+    public String getCronExpression() {
+        return "* * * * * ? *";
+    }
+
+    @Override
+    public void setParams(String s) {
+
+    }
+}
+
+````
