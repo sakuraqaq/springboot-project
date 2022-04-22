@@ -7,6 +7,7 @@ import com.sakura.web.annotation.EnableRedisSession;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * @author : bi
@@ -14,7 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @EnableRedis
 @EnableRedisSession
-@EnableCreateTable
+//@EnableCreateTable
 @MapperScan("com.sakura.mapper")
 @SpringBootApplication(scanBasePackages = {"com.sakura"})
 @EnableWorkFlow(scanBasePackage = "com.sakura.service.workflow.service")
