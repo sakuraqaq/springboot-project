@@ -3,17 +3,34 @@ server:
 
 spring:
   datasource:
-    entityPackage: com.sakura.entity
-    name: sakura
-    basePackage: com.sakura.mapper
-    qualifier: sakuraQualifier
-
-    initialSize: 10
-    maxActive: 20
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url:
+          username:
+          password:
+          initialSize: 5
+          maxActive: 20
+          basePackage: com.sakura.mapper
+          entityPackage: com.sakura.entity
+          qualifier: sakuraQualifier
+        slave_1:
+          url:
+          username:
+          password:
+          initialSize: 5
+          maxActive: 20
+          basePackage: com.sakura.mapper
+          entityPackage: com.sakura.entity.zhgd
 
 sakura:
   redis:
-
+    host:
+    port:
+    password:
+    timeout: 10000
     jedisConfig:
       maxActive: 600
       maxWait: 3000
