@@ -15,9 +15,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  */
 @EnableRedis
 @EnableRedisSession
-//@EnableCreateTable
+@EnableCreateTable
 @MapperScan("com.sakura.mapper")
-@SpringBootApplication(scanBasePackages = {"com.sakura"})
+@SpringBootApplication(scanBasePackages = {"com.sakura"}, exclude = DataSourceAutoConfiguration.class)
 @EnableWorkFlow(scanBasePackage = "com.sakura.service.workflow.service")
 public class SakuraWebApplication {
 

@@ -4,7 +4,7 @@ springboot 多模块项目的创建模板
 
 2021 7/27 新增oss + websocket + 自定义 mybatis-plus
 2022 4/18 自定义mybatis-plus 改为 mybatis-plus 3.5.1官方版本  使用@EnableCreateTable可以自动建表
-
+2022 4/25 改为多数据源配置
 
 yml文件：
 ---------
@@ -14,15 +14,27 @@ server:
 
 spring:
   datasource:
-    entityPackage: com.sakura.entity
-    name: sakura
-    basePackage: com.sakura.mapper
-    qualifier: sakuraQualifier
-    url: 
-    username: 
-    password: 
-    initialSize: 10
-    maxActive: 20
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: 
+          username: 
+          password: 
+          initialSize: 5
+          maxActive: 20
+          basePackage: com.sakura.mapper
+          entityPackage: com.sakura.entity
+          qualifier: sakuraQualifier
+        slave_1:
+          url: 
+          username: 
+          password: 
+          initialSize: 5
+          maxActive: 20
+          basePackage: com.sakura.mapper
+          entityPackage: com.sakura.entity.zhgd
 ```
  
 
