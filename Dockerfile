@@ -22,6 +22,5 @@ ENV JAVA_OPTS="\
 -XX:+UseCMSInitiatingOccupancyOnly \
 -XX:+UseCMSCompactAtFullCollection \
 -XX:+DisableExplicitGC \
--Xnoclassgc
-"
+-Xnoclassgc"
 ENTRYPOINT java ${JAVA_OPTS} -jar /work/app/app.jar
