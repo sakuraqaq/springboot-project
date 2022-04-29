@@ -4,7 +4,7 @@ RUN mkdir /work
 RUN mkdir /work/app
 RUN mkdir /work/log
 WORKDIR /work/app
-COPY ./sakura-web/sakura-web-exe/target1/app.jar ./app.jar
+COPY ./jar/app.jar ./app.jar
 
 ENV JAVA_OPTS="\
 -Xms512m \
