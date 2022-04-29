@@ -13,8 +13,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @author : bi
  * @since : 2021年06月24日
  */
-@EnableRedis
-@EnableRedisSession
 @EnableCreateTable
 @MapperScan("com.sakura.mapper")
 @SpringBootApplication(scanBasePackages = {"com.sakura"}, exclude = DataSourceAutoConfiguration.class)

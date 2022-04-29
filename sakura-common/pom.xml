@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sakura-common</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>com.sakura.demo</groupId>

@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.sakura.frame</groupId>
         <artifactId>frame</artifactId>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
     </parent>
 
     <groupId>com.sakura.demo</groupId>
@@ -29,14 +29,15 @@
         <dependency>
             <groupId>com.sakura.frame</groupId>
             <artifactId>frame</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 
     <repositories>
         <repository>
-            <id>sakuraqaq-sakura-mybatis-plus-maven</id>
-            <url>https://raw.githubusercontent.com/sakuraqaq/sakura-mybatis-plus-maven/main/repo</url>
+            <id>sakura303-frame</id>
+            <name>mvn repository</name>
+            <url>https://gitee.com/sakura303/frame/tree/master/release</url>
         </repository>
     </repositories>
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @author: bi
  * @date: 2022/4/21 14:57
  */
-@Component
+//@Component
 public class TestTask implements ScheduleJob {
     @Override
     public void execute() {
