@@ -8,19 +8,15 @@ COPY ./jar/app.jar ./app.jar
 
 ENV JAVA_OPTS="\
 -Xms512m \
--Xmx512g \
+-Xmx512m \
 -Xmn256m \
 -Xss256k \
--XX:PermSize=256m \
--XX:MaxPermSize=256m \
 -XX:+PrintGC \
--XX:PrintGCDetails \
--XX:PrintGCDateStamps \
--XX:UserConcMarkSweepGC \
--XX:UseParNewGC \
+-XX:+PrintGCDetails \
+-XX:+PrintGCDateStamps \
+-XX:+UserConcMarkSweepGC \
+-XX:+UseParNewGC \
 -XX:CMSInitiatingOccupancyFraction=70 \
 -XX:+UseCMSInitiatingOccupancyOnly \
--XX:+UseCMSCompactAtFullCollection \
--XX:+DisableExplicitGC \
--Xnoclassgc"
+-XX:+DisableExplicitGC"
 ENTRYPOINT java ${JAVA_OPTS} -jar /work/app/app.jar
